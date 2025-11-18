@@ -1,5 +1,10 @@
 # Wishbone Bus Interface – SystemVerilog Design & Verification
 
+🔗 **EDA Playground Simulation Link:**  
+https://edaplayground.com/x/ZHSu  
+
+---
+
 ## Project Overview
 This project implements a Wishbone point-to-point bus interface for on-chip communication between Master and Slave IP cores in SoC designs.
 
@@ -65,30 +70,30 @@ Additional Features:
 ## Verification Environment
 A modular SystemVerilog testbench with:
 - **Generator** → Constrained-random stimulus  
-- **Driver** → Drives bus protocol signals  
-- **Monitor** → Observes Wishbone transactions  
-- **Scoreboard** → Reference memory for data checking  
+- **Driver** → Drives protocol-valid signal sequences  
+- **Monitor** → Observes DUT behavior  
+- **Scoreboard** → Memory integrity checking against expected reference  
 
-Verification targets:
-- Handshake correctness  
-- Burst sequencing and timing  
-- ACK/ERR behavior  
-- Data integrity and Tag-Add correctness  
-- Burst completion using `CTI = 3'b111`  
+Verification ensures:
+- Correct handshake & protocol sequencing  
+- Accurate CTI-based burst execution  
+- Wait-state handling  
+- Valid ACK/ERR signaling  
+- Tag-Add functional correctness  
+- Burst completion with `CTI = 3'b111`  
 
 ---
 
 ## Test Scenarios
-- Classic read/write operations  
-- Incrementing & linear burst transfers  
-- Burst termination using CTI End code  
-- Invalid address → error signaling  
+- Classic read/write cycles  
+- Incrementing & linear burst sequences  
+- Burst termination with CTI = 111  
+- ERR signaling for invalid address access  
 
 ---
 
 ## Simulation Results
 Waveform & log-based functional validation confirm:
-- Correct Wishbone timing and state transitions  
-- Accurate read/write data transactions  
-- Proper ACK/ERR signaling  
-- Full protocol compliance under burst conditions  
+- Correct Wishbone timing & state transitions  
+- Data integrity maintained in single & burst transactions  
+- Protocol compliance under all tested conditions  
