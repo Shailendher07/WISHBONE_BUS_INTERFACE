@@ -1,6 +1,6 @@
-[2025-11-08 18:31:49 UTC] vcs -full64 -licqueue '-timescale=1ns/1ns' '+vcs+flush+all' '+warn=all' '-sverilog' design.sv testbench.sv  && ./simv +vcs+lic+wait  
+[2025-11-18 20:06:38 UTC] vcs -full64 -licqueue '-timescale=1ns/1ns' '+vcs+flush+all' '+warn=all' '-sverilog' design.sv testbench.sv  && ./simv +vcs+lic+wait  
                          Chronologic VCS (TM)
-       Version U-2023.03-SP2_Full64 -- Sat Nov  8 13:31:50 2025
+       Version U-2023.03-SP2_Full64 -- Tue Nov 18 15:06:39 2025
 
                     Copyright (c) 1991 - 2023 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -22,10 +22,10 @@ Parsing design file 'design.sv'
 Parsing design file 'testbench.sv'
 Top Level Modules:
        testbench
-TimeScale is 1 ns / 1 ps
+TimeScale is 1 ns / 1 ns
 
 Warning-[TFIPC] Too few instance port connections
-testbench.sv, 709
+testbench.sv, 605
 testbench, "wishbone_top #(.ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH), .SEL_WIDTH(SEL_WIDTH)) dut( .clk_i (clk),  .rst_i (i_intf.rst),  .addr_o (i_intf.addr_o),  .data_o (i_intf.data_o),  .we_o (i_intf.we_o),  .stb_o (i_intf.stb_o),  .cyc_o (i_intf.cyc_o),  .sel_o (i_intf.sel_o),  .cti_input (i_intf.cti_input),  .tag_add (i_intf.tag_add),  .ack_i (i_intf.ack_i),  .err_i (i_intf.err_i),  .data_i (i_intf.data_i),  .state_out (i_intf.state_out),  .counter (i_intf.counter_dbg));"
   The above instance has fewer port connections than the module definition.
   Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
@@ -33,7 +33,7 @@ testbench, "wishbone_top #(.ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH), .SE
 
 
 Warning-[INTFDV] VCD dumping of interface/program/package
-testbench.sv, 740
+testbench.sv, 633
   Selective VCD dumping of interface 'wishbone_if' is not supported.  
   Selective VCD dumping for interfaces, packages and programs is not 
   supported.
@@ -54,10 +54,10 @@ rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
 if [ -x ../simv ]; then chmod a-x ../simv; fi
 g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/vcsmx/vcs/U-2023.03-SP2/linux64/lib -L/apps/vcsmx/vcs/U-2023.03-SP2/linux64/lib  -Wl,-rpath-link=./   objs/amcQw_d.o   _331_archive_1.so   SIM_l.o       rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/vcsmx/vcs/U-2023.03-SP2/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive          /apps/vcsmx/vcs/U-2023.03-SP2/linux64/lib/vcs_save_restore_new.o -ldl  -lc -lm -lpthread -ldl 
 ../simv up to date
-CPU time: .667 seconds to compile + .613 seconds to elab + .294 seconds to link
+CPU time: .578 seconds to compile + .512 seconds to elab + .260 seconds to link
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  Nov  8 13:31 2025
+Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  Nov 18 15:06 2025
 # Driver: All DUT signals reset to 0
 
 
@@ -668,13 +668,6 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 
 # [GENERATOR] Finished sending 78 transactions
 # -------------------------
-# - [ Driver ] 
-# -------------------------
-# - addr = 8, data_out = b36931a9, we = 1, sel = f, tag_add = 0, cti = 0
-# - data_in = 0, ack = 0, err = 0
-# -------------------------
-
-# -------------------------
 # - [ Monitor - CTI=000/001/010 ] 
 # -------------------------
 # - addr = 8, data_out = b36931a9, we = 1, sel = f, tag_add = 0, cti = 0
@@ -692,7 +685,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1f, data_out = 3be67cb8, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 8, data_out = b36931a9, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -714,7 +707,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 18, data_out = 8978feee, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 1f, data_out = 3be67cb8, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -736,7 +729,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 11, data_out = 42ee42aa, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 18, data_out = 8978feee, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -758,7 +751,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1c, data_out = 9db05fab, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 11, data_out = 42ee42aa, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -780,7 +773,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 2, data_out = 24bdfcb4, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 1c, data_out = 9db05fab, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -802,7 +795,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 7, data_out = 9074b3f9, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 2, data_out = 24bdfcb4, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -824,7 +817,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 19, data_out = d9a4fe1f, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 7, data_out = 9074b3f9, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -846,7 +839,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 2, data_out = f4a45af6, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 19, data_out = d9a4fe1f, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -868,7 +861,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 11, data_out = 9ce1121f, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 2, data_out = f4a45af6, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -890,7 +883,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 12, data_out = 783e42f5, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 11, data_out = 9ce1121f, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -912,7 +905,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = e, data_out = 46a49355, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 12, data_out = 783e42f5, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -934,7 +927,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 5, data_out = e7d7ec2b, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = e, data_out = 46a49355, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -956,7 +949,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = e, data_out = 9108da13, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 5, data_out = e7d7ec2b, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -978,7 +971,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 19, data_out = 8332e47d, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = e, data_out = 9108da13, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1000,7 +993,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 4, data_out = d3f60a5f, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 19, data_out = 8332e47d, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1022,7 +1015,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 2, data_out = 59272796, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 4, data_out = d3f60a5f, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1044,7 +1037,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 10, data_out = 861f2299, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 2, data_out = 59272796, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1066,7 +1059,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = 82f4ac19, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 10, data_out = 861f2299, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1088,7 +1081,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 8, data_out = 95f997cb, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 0, data_out = 82f4ac19, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1110,7 +1103,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1a, data_out = 5b03ab02, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 8, data_out = 95f997cb, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1132,7 +1125,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 17, data_out = 72b48af2, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 1a, data_out = 5b03ab02, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1154,7 +1147,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = 222b4918, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 17, data_out = 72b48af2, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1176,7 +1169,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 19, data_out = e2f0b97, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 0, data_out = 222b4918, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1198,7 +1191,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = a, data_out = 1bec8db4, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 19, data_out = e2f0b97, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1220,7 +1213,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 11, data_out = 881e1c17, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = a, data_out = 1bec8db4, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1242,7 +1235,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 8, data_out = df88521d, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 11, data_out = 881e1c17, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1264,7 +1257,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 13, data_out = 83c56518, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 8, data_out = df88521d, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1286,7 +1279,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 4, data_out = e318848d, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 13, data_out = 83c56518, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1308,7 +1301,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 7, data_out = e851f4f0, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 4, data_out = e318848d, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1330,7 +1323,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1b, data_out = 55ab47f1, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 7, data_out = e851f4f0, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1352,7 +1345,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 7, data_out = 43f33343, we = 1, sel = f, tag_add = 0, cti = 0
+# - addr = 1b, data_out = 55ab47f1, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1374,7 +1367,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 7, data_out = 43f33343, we = 1, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1396,7 +1389,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 7, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1418,7 +1411,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 15, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 7, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1440,7 +1433,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 12, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 15, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1462,7 +1455,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1e, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 12, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1484,7 +1477,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1d, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 1e, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1506,7 +1499,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 7, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 1d, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1528,7 +1521,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 9, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 7, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1550,7 +1543,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 9, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1572,7 +1565,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1e, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 1f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1594,7 +1587,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 10, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 1e, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1616,7 +1609,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 14, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 10, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1638,7 +1631,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1d, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 14, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1660,7 +1653,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 18, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 1d, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1682,7 +1675,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1a, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 18, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1704,7 +1697,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 1a, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1726,7 +1719,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 3, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1748,7 +1741,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 14, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 3, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1770,7 +1763,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 17, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 14, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1792,7 +1785,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = b, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 17, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1814,7 +1807,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = c, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = b, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1836,7 +1829,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 3, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = c, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1858,7 +1851,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = c, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 3, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1880,7 +1873,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 8, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = c, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1902,7 +1895,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = d, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 8, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1924,7 +1917,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 3, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = d, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1946,7 +1939,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 17, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 3, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1968,7 +1961,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 17, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -1990,7 +1983,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 8, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = f, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2012,7 +2005,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 10, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 8, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2034,7 +2027,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 2, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 10, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2056,7 +2049,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 10, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
+# - addr = 2, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2078,7 +2071,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 0
+# - addr = 10, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2089,7 +2082,7 @@ Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  No
 # - data_in = 0, ack = 1, err = 0
 # -------------------------
 
-Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000 ps
+Error: "testbench.sv", 495: $unit::\scoreboard::run .unnamed$$_0: at time 1054 ns
  TAG ADD MISMATCH -> exp=222b4918 got=00000000
 # -------------------------
 # - [ Scoreboard ] 
@@ -2101,7 +2094,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = aea6f21b, we = 1, sel = f, tag_add = 0, cti = 1
+# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 0
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2123,7 +2116,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1, data_out = f0653cc4, we = 1, sel = f, tag_add = 0, cti = 1
+# - addr = 0, data_out = aea6f21b, we = 1, sel = f, tag_add = 0, cti = 1
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2145,7 +2138,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 1
+# - addr = 1, data_out = f0653cc4, we = 1, sel = f, tag_add = 0, cti = 1
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2167,7 +2160,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 1, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 1
+# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 1
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2189,7 +2182,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 1
+# - addr = 1, data_out = 0, we = 0, sel = f, tag_add = 0, cti = 1
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2209,10 +2202,17 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 
 # -------------------------
+# - [ Driver ] 
+# -------------------------
+# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 1
+# - data_in = 0, ack = 0, err = 0
+# -------------------------
+
+# -------------------------
 # - [ Monitor - CTI - 111 ] 
 # -------------------------
 # - addr = 19, data_out = 5bc46dbc, we = 1, sel = f, tag_add = 0, cti = 7
-# - data_in = 9f0c2edf, ack = 0, err = 0
+# - data_in = 0, ack = 0, err = 0
 # -------------------------
 
 # BLOCK EXIT DONE 
@@ -2221,6 +2221,21 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - addr = 19, data_out = 5bc46dbc, we = 1, sel = f, tag_add = 0, cti = 7
 # - data_in = 0, ack = 0, err = 0
+# -------------------------
+
+# -------------------------
+# - [ Monitor - CTI=000/001/010 ] 
+# -------------------------
+# - addr = 0, data_out = 2542a3fe, we = 1, sel = f, tag_add = 0, cti = 2
+# - data_in = 0, ack = 1, err = 0
+# -------------------------
+
+# [WRITE][PASS] Addr=0 Data=0x2542a3fe stored 
+# -------------------------
+# - [ Scoreboard ] 
+# -------------------------
+# - addr = 0, data_out = 2542a3fe, we = 1, sel = f, tag_add = 0, cti = 2
+# - data_in = 0, ack = 1, err = 0
 # -------------------------
 
 # -------------------------
@@ -2233,16 +2248,16 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Monitor - CTI=000/001/010 ] 
 # -------------------------
-# - addr = 0, data_out = 2542a3fe, we = 1, sel = f, tag_add = 0, cti = 2
-# - data_in = 9f0c2edf, ack = 1, err = 0
+# - addr = 1, data_out = cca5d01e, we = 1, sel = f, tag_add = 0, cti = 2
+# - data_in = 0, ack = 1, err = 0
 # -------------------------
 
-# [WRITE][PASS] Addr=0 Data=0x2542a3fe stored 
+# [WRITE][PASS] Addr=1 Data=0xcca5d01e stored 
 # -------------------------
 # - [ Scoreboard ] 
 # -------------------------
-# - addr = 0, data_out = 2542a3fe, we = 1, sel = f, tag_add = 0, cti = 2
-# - data_in = 9f0c2edf, ack = 1, err = 0
+# - addr = 1, data_out = cca5d01e, we = 1, sel = f, tag_add = 0, cti = 2
+# - data_in = 0, ack = 1, err = 0
 # -------------------------
 
 # -------------------------
@@ -2253,25 +2268,10 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 
 # -------------------------
-# - [ Monitor - CTI=000/001/010 ] 
-# -------------------------
-# - addr = 1, data_out = cca5d01e, we = 1, sel = f, tag_add = 0, cti = 2
-# - data_in = 9f0c2edf, ack = 1, err = 0
-# -------------------------
-
-# [WRITE][PASS] Addr=1 Data=0xcca5d01e stored 
-# -------------------------
-# - [ Scoreboard ] 
-# -------------------------
-# - addr = 1, data_out = cca5d01e, we = 1, sel = f, tag_add = 0, cti = 2
-# - data_in = 9f0c2edf, ack = 1, err = 0
-# -------------------------
-
-# -------------------------
 # - [ Monitor - CTI - 111 ] 
 # -------------------------
 # - addr = b, data_out = 446943f6, we = 1, sel = f, tag_add = 0, cti = 7
-# - data_in = 9f0c2edf, ack = 0, err = 0
+# - data_in = 0, ack = 0, err = 0
 # -------------------------
 
 # BLOCK EXIT DONE 
@@ -2279,13 +2279,6 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # - [ Driver ] 
 # -------------------------
 # - addr = b, data_out = 446943f6, we = 1, sel = f, tag_add = 0, cti = 7
-# - data_in = 0, ack = 0, err = 0
-# -------------------------
-
-# -------------------------
-# - [ Driver ] 
-# -------------------------
-# - addr = 0, data_out = 760a743, we = 0, sel = f, tag_add = 0, cti = 2
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2307,7 +2300,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = b412d0a5, we = 0, sel = f, tag_add = 0, cti = 2
+# - addr = 0, data_out = 760a743, we = 0, sel = f, tag_add = 0, cti = 2
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2329,7 +2322,7 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - [ Driver ] 
 # -------------------------
-# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 2
+# - addr = 0, data_out = b412d0a5, we = 0, sel = f, tag_add = 0, cti = 2
 # - data_in = 0, ack = 0, err = 0
 # -------------------------
 
@@ -2346,6 +2339,13 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # -------------------------
 # - addr = 1, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 2
 # - data_in = f1e8741c, ack = 1, err = 0
+# -------------------------
+
+# -------------------------
+# - [ Driver ] 
+# -------------------------
+# - addr = 0, data_out = 0, we = 0, sel = f, tag_add = 1, cti = 2
+# - data_in = 0, ack = 0, err = 0
 # -------------------------
 
 # -------------------------
@@ -2369,13 +2369,13 @@ Error: "testbench.sv", 570: $unit::\scoreboard::run .unnamed$$_0: at time 798000
 # Generator: 78 | Driver: 78 | Scoreboard: 78
 # ================================================
 
-$finish called from file "testbench.sv", line 663.
-$finish at simulation time               978000
+$finish called from file "testbench.sv", line 576.
+$finish at simulation time                 1278
            V C S   S i m u l a t i o n   R e p o r t 
-Time: 978000 ps
-CPU Time:      0.450 seconds;       Data structure size:   0.0Mb
-Sat Nov  8 13:31:52 2025
+Time: 1278 ns
+CPU Time:      0.420 seconds;       Data structure size:   0.0Mb
+Tue Nov 18 15:06:41 2025
 Finding VCD file...
 ./wishbone_wave.vcd
-[2025-11-08 18:31:52 UTC] Opening EPWave...
+[2025-11-18 20:06:41 UTC] Opening EPWave...
 Done
